@@ -50,6 +50,7 @@ jobs:
           auto-update-conda: true
           python-version: ${{ matrix.python-version }}
           channels: conda-forge,anaconda
+          activate-environment: test
       - name: Set Additional Envs
         shell: bash -l {0}
         run: |
