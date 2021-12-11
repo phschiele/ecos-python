@@ -79,6 +79,7 @@ jobs:
         run: |
           make install
           python -m nose
+          rm -rf build/
 
       - name: Build wheels
         env:
