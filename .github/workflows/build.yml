@@ -19,10 +19,13 @@ jobs:
 
   build:
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash -l {0}
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-18.04, macos-10.15, windows-2019 ]
+        os: [ ubuntu-18.04, macos-11, windows-2019 ]
         python-version: [ 3.6, 3.7, 3.9 ]
         include:
           - os: ubuntu-18.04
@@ -50,20 +53,17 @@ jobs:
           auto-update-conda: true
           python-version: ${{ matrix.python-version }}
           channels: conda-forge,anaconda
-          activate-environment: test
       - name: Set Additional Envs
-        shell: bash -l {0}
         run: |
           echo "PYTHON_SUBVERSION=$(echo $PYTHON_VERSION | cut -c 3-)" >> $GITHUB_ENV
           echo "DEPLOY=$( [[ $GITHUB_EVENT_NAME == 'push' && $GITHUB_REF == 'refs/tags'* ]] && echo 'True' || echo 'False' )" >> $GITHUB_ENV
 
       - name: Install dependencies
-        shell: bash -l {0}
         run: |
           if [[ "$PYTHON_VERSION" == "3.6" ]] || [[ "$PYTHON_VERSION" == "3.7" ]] || [[ "$PYTHON_VERSION" == "3.8" ]]; then
-            conda install scipy=1.3 numpy=1.16 nose mkl
+            conda install scipy=1.3 numpy=1.16 nose
           elif [[ "$PYTHON_VERSION" == "3.9" ]]; then
-            conda install scipy=1.5 numpy=1.19 nose mkl
+            conda install scipy=1.5 numpy=1.19 nose
           fi
       - name: Test
         run: |
