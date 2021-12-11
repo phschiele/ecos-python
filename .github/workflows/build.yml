@@ -58,7 +58,6 @@ jobs:
 
       - name: Test
         run: |
-          make version
-          python setup.py develop
+          make install
           pip install nose
           python -m nose
