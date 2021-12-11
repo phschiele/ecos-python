@@ -1,7 +1,7 @@
 # Python Wrapper for Embedded Conic Solver (ECOS)
 
-[![Build Status](https://travis-ci.org/embotech/ecos-python.svg?branch=master)](https://travis-ci.org/embotech/ecos-python)
-[![Build Status](https://ci.appveyor.com/api/projects/status/78aatn417av1ul5u?svg=true)](https://ci.appveyor.com/project/echu/ecos-python)
+[![Build Status](http://github.com/embotech/ecos-python/workflows/build/badge.svg?event=push)](https://github.com/embotech/ecos-python/actions/workflows/build.yml)
+
 
 **Visit www.embotech.com/ECOS for detailed information on ECOS.**
 
