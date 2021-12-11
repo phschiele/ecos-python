@@ -125,7 +125,7 @@ The Python module contains two version numbers:
 
 1. `ecos.__version__`: This is the version of the Python wrapper for
    ECOS
-2. `ecos__solver_version__`: This is the version of the underlying ECOS
+2. `ecos.__solver_version__`: This is the version of the underlying ECOS
    solver
 
 These two version numbers should typically agree, but they might not
