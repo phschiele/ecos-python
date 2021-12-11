@@ -65,6 +65,9 @@ jobs:
           elif [[ "$PYTHON_VERSION" == "3.9" ]]; then
             conda install scipy=1.5 numpy=1.19 nose
           fi
+          if [[ "$RUNNER_OS" == "macOS" ]]; then
+            sudo rm -rf /Library/Developer/CommandLineTools
+          fi
 
       - name: Downgrade xcode
         uses: maxim-lobanov/setup-xcode@v1
