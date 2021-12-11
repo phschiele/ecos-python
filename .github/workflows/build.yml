@@ -19,14 +19,11 @@ jobs:
 
   build:
     runs-on: ${{ matrix.os }}
-    defaults:
-      run:
-        shell: bash -l {0}
     strategy:
       fail-fast: false
       matrix:
         os: [ ubuntu-18.04, macos-10.15, windows-2019 ]
-        python-version: [ 2.7, 3.5, 3.6, 3.7, 3.9 ]
+        python-version: [ 3.6, 3.7, 3.9 ]
         include:
           - os: ubuntu-18.04
             python-version: 3.8
@@ -52,6 +49,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Set Additional Envs
+        shell: bash
         run: |
           echo "PYTHON_SUBVERSION=$(echo $PYTHON_VERSION | cut -c 3-)" >> $GITHUB_ENV
           echo "DEPLOY=$( [[ $GITHUB_EVENT_NAME == 'push' && $GITHUB_REF == 'refs/tags'* ]] && echo 'True' || echo 'False' )" >> $GITHUB_ENV
