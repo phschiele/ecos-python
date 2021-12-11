@@ -106,16 +106,18 @@ Here is a small
 [example](http://www.cvxpy.org/en/latest/tutorial/advanced/index.html#solve-method-options)
 from the CVXPY tutorial:
 
-```
+```py
+import cvxpy as cp
+
 # Solving a problem with different solvers.
-x = Variable(2)
-obj = Minimize(norm(x, 2) + norm(x, 1))
+x = cp.Variable(2)
+obj = cp.Minimize(cp.norm(x, 2) + cp.norm(x, 1))
 constraints = [x >= 2]
-prob = Problem(obj, constraints)
+prob = cp.Problem(obj, constraints)
 
 # Solve with ECOS.
-prob.solve(solver=ECOS)
-print "optimal value with ECOS:", prob.value
+prob.solve(solver=cp.ECOS)
+print("optimal value with ECOS:", prob.value)
 ```
 
 ## ECOS Versioning
