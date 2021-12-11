@@ -60,14 +60,18 @@ jobs:
 
       - name: Install dependencies
         run: |
-          if [[ "$RUNNER_OS" == "macOS" ]]; then
-            brew update && brew install gmp
-          fi
           if [[ "$PYTHON_VERSION" == "3.6" ]] || [[ "$PYTHON_VERSION" == "3.7" ]] || [[ "$PYTHON_VERSION" == "3.8" ]]; then
             conda install scipy=1.3 numpy=1.16 nose
           elif [[ "$PYTHON_VERSION" == "3.9" ]]; then
             conda install scipy=1.5 numpy=1.19 nose
           fi
+
+      - name: Downgrade xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        if: ${{ env.RUNNER_OS == "macOS"}}
+        with:
+          xcode-version: '10.3'
+
       - name: Test
         run: |
           make install
